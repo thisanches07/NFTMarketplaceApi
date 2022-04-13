@@ -16,4 +16,9 @@ public interface NftRepository extends JpaRepository<Nft, Long> {
             "WHERE" +
             "(n.is_popular = true)")
     List<Nft> findByPopular();
+
+    @Query("SELECT n FROM Nft n " +
+            "WHERE" +
+            "(n.is_recommended = true)")
+    List<Nft> findByRecommendation();
 }

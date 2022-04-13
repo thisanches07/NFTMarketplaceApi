@@ -4,7 +4,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import pa.nft.marketplace.dto.NftDto;
-import pa.nft.marketplace.dto.NftPopularDto;
+import pa.nft.marketplace.dto.NftListDto;
 import pa.nft.marketplace.dto.NftUpdateDto;
 import pa.nft.marketplace.entities.Nft;
 import pa.nft.marketplace.services.NftService;
@@ -46,7 +46,13 @@ public class NftController {
 
   @GetMapping("/popular")
   public ResponseEntity<?> getPopularNfts() {
-    NftPopularDto response = nftService.getPopularNfts();
+    NftListDto response = nftService.getPopularNfts();
+    return ResponseEntity.ok(response);
+  }
+
+  @GetMapping("/recommended")
+  public ResponseEntity<?> getRecommendedNfts() {
+    NftListDto response = nftService.getRecommendedNfts();
     return ResponseEntity.ok(response);
   }
 

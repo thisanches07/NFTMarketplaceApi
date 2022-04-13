@@ -12,7 +12,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
 import pa.nft.marketplace.dto.NftDto;
-import pa.nft.marketplace.dto.NftPopularDto;
+import pa.nft.marketplace.dto.NftListDto;
 import pa.nft.marketplace.dto.NftUpdateDto;
 import pa.nft.marketplace.entities.Nft;
 import pa.nft.marketplace.repositories.NftRepository;
@@ -32,10 +32,10 @@ public class NftService {
         return new NftDto(nft);
     }
 
-    public NftPopularDto getPopularNfts() {
+    public NftListDto getPopularNfts() {
 
         List<Nft> list = nftRepository.findByPopular();
-        return new NftPopularDto(list.size(), 2, list);
+        return new NftListDto(list.size(), 2, list);
     }
 
     public NftDto update(@Valid NftUpdateDto nftUpdateDto, long id) {
@@ -62,5 +62,10 @@ public class NftService {
         Optional<Nft> op = nftRepository.findById(id);
         Nft nft = op.orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Nft não está cadastrada!"));
         return new NftDto(nft);
+    }
+
+    public NftListDto getRecommendedNfts() {
+        List<Nft> list = nftRepository.findByRecommendation();
+        return new NftListDto(list.size(), 2, list);
     }
 }

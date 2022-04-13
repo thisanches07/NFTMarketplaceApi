@@ -24,12 +24,14 @@ public class Nft {
     private LocalDateTime updated_at;
     private int type_id;
     private boolean is_popular;
+    private boolean is_recommended;
 
     public Nft() {
     }
 
     public Nft(String name, String description, float price, Integer stars, String img, String location,
-            LocalDateTime created_at, LocalDateTime updated_at, int type_id, boolean is_popular) {
+            LocalDateTime created_at, LocalDateTime updated_at, int type_id, boolean is_popular,
+            boolean is_recommended) {
         this.name = name;
         this.description = description;
         this.price = price;
@@ -40,6 +42,7 @@ public class Nft {
         this.updated_at = updated_at;
         this.type_id = type_id;
         this.is_popular = is_popular;
+        this.is_recommended = is_recommended;
     }
 
     public Long getId() {
@@ -128,6 +131,14 @@ public class Nft {
 
     public void setIs_popular(boolean is_popular) {
         this.is_popular = is_popular;
+    }
+
+    public boolean isIs_recommended() {
+        return is_recommended;
+    }
+
+    public void setIs_recommended(boolean is_recommended) {
+        this.is_recommended = is_recommended;
     }
 
 }

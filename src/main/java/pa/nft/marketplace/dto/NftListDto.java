@@ -5,13 +5,13 @@ import java.util.List;
 
 import pa.nft.marketplace.entities.Nft;
 
-public class NftPopularDto {
+public class NftListDto {
     private int total_size;
     private int type_id;
     private int offset;
     private List<NftDto> nfts;
 
-    public NftPopularDto(int total_size, int type_id, List<Nft> nfts) {
+    public NftListDto(int total_size, int type_id, List<Nft> nfts) {
         setTotal_size(nfts.size());
         setType_id(2);
         setOffset(0);
