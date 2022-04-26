@@ -5,6 +5,7 @@ import java.time.LocalDateTime;
 import pa.nft.marketplace.entities.Nft;
 
 public class NftDto {
+    private Long id;
     private String name;
     private String description;
     private float price;
@@ -19,6 +20,7 @@ public class NftDto {
     }
 
     public NftDto(Nft nft) {
+        this.id = nft.getId();
         this.name = nft.getName();
         this.description = nft.getDescription();
         this.price = nft.getPrice();
@@ -28,6 +30,14 @@ public class NftDto {
         this.created_at = nft.getCreated_at();
         this.updated_at = nft.getUpdated_at();
         this.type_id = nft.getType_id();
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getName() {
