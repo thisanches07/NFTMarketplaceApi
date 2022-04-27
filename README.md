@@ -2,6 +2,10 @@
 
 Aplicação backend de aplicativo mobile para compra de NFTs
 
+## Link para o repositório da aplicação mobile
+
+https://github.com/thisanches07/NFTMarketplace
+
 ## Integrantes
 
 Feito por:
