@@ -1,6 +1,10 @@
+-- NFTS
 INSERT INTO TB_NFT(name,description,price,stars,img,location,created_at,updated_at,type_id, is_popular, is_recommended) VALUES ('Prime Ape','description prime ape',123.00,5,'link image','Brazil','2021-12-27 06:35:34','2020-10-10',2,true,false)
 INSERT INTO TB_NFT(name,description,price,stars,img,location,created_at,updated_at,type_id, is_popular, is_recommended) VALUES ('Prime Ape 2','description prime ape 2',123.00,5,'link image 2','Brazil','2021-12-27 06:35:34','2020-10-10',2,true,false)
 INSERT INTO TB_NFT(name,description,price,stars,img,location,created_at,updated_at,type_id, is_popular, is_recommended) VALUES ('Prime Ape','description prime ape',123.00,5,'link image','Brazil','2021-12-27 06:35:34','2021-12-27 06:35:34',2,true,false)
 INSERT INTO TB_NFT(name,description,price,stars,img,location,created_at,updated_at,type_id, is_popular, is_recommended) VALUES ('Prime Ape','description prime ape',123.00,5,'link image','Brazil','2021-12-27 06:35:34','2021-12-27 06:35:34',2,true,false)
 INSERT INTO TB_NFT(name,description,price,stars,img,location,created_at,updated_at,type_id, is_popular, is_recommended) VALUES ('Prime Ape','description prime ape',123.00,5,'link image','Brazil','2021-12-27 06:35:34','2021-12-27 06:35:34',2,true,false)
 INSERT INTO TB_NFT(name,description,price,stars,img,location,created_at,updated_at,type_id, is_popular, is_recommended) VALUES ('Prime Ape','description prime ape',123.00,5,'link image','Brazil','2021-12-27 06:35:34','2021-12-27 06:35:34',2,true,false)
+
+-- USERS
+INSERT INTO TB_USER(name,email,password,phone) VALUES ('Bruno Cesar', 'user@test.br','123456','+55 (15) 99999-9999')
