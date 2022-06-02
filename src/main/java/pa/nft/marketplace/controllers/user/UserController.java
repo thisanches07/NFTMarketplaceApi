@@ -1,4 +1,4 @@
-package pa.nft.marketplace.controllers;
+package pa.nft.marketplace.controllers.user;
 
 import java.util.List;
 
@@ -18,8 +18,8 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.util.UriComponents;
 import org.springframework.web.util.UriComponentsBuilder;
 
-import pa.nft.marketplace.entities.User;
-import pa.nft.marketplace.services.UserService;
+import pa.nft.marketplace.entities.user.User;
+import pa.nft.marketplace.services.user.UserService;
 
 @RestController
 @RequestMapping("/users")

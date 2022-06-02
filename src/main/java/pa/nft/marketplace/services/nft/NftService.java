@@ -1,4 +1,4 @@
-package pa.nft.marketplace.services;
+package pa.nft.marketplace.services.nft;
 
 import java.util.List;
 import java.util.Optional;
@@ -11,11 +11,11 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
-import pa.nft.marketplace.dto.NftDto;
-import pa.nft.marketplace.dto.NftListDto;
-import pa.nft.marketplace.dto.NftUpdateDto;
-import pa.nft.marketplace.entities.Nft;
-import pa.nft.marketplace.repositories.NftRepository;
+import pa.nft.marketplace.dto.nft.NftDto;
+import pa.nft.marketplace.dto.nft.NftListDto;
+import pa.nft.marketplace.dto.nft.NftUpdateDto;
+import pa.nft.marketplace.entities.nft.Nft;
+import pa.nft.marketplace.repositories.nft.NftRepository;
 
 @Service
 public class NftService {

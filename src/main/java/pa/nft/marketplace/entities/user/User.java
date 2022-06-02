@@ -1,16 +1,27 @@
-package pa.nft.marketplace.entities;
+package pa.nft.marketplace.entities.user;
 
+import java.util.Collection;
+import java.util.Set;
+
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotNull;
 
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+
 @Entity
 @Table(name = "TB_USER")
-public class User {
+public class User implements UserDetails {
+
+  private static final long serialVersionUID = 1L;
   
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -19,9 +30,10 @@ public class User {
   @NotNull(message = "The name cannot be null")
   private String name;
   
-  @Email(message = "This value should be email")
+  @Email(message = "This value should be username")
   @NotNull(message = "The email cannot be null")
-  private String email;
+  @Column(unique = true)
+  private String username;
   
   @NotNull(message = "The password cannot be null")
   private String password;
@@ -29,18 +41,21 @@ public class User {
   @NotNull(message = "The phone cannot be null")
   private String phone;
 
+  @ManyToMany(fetch = FetchType.EAGER)
+  private Set<Role> roles;
+
   public User() {}
 
   public User(
     Long id,
     String name,
-    String email,
+    String username,
     String password,
     String phone
   ) {
     this.id = id;
     this.name = name;
-    this.email = email;
+    this.username = username;
     this.password = password;
     this.phone = phone;
   }
@@ -61,12 +76,12 @@ public class User {
     this.name = name;
   }
 
-  public String getEmail() {
-    return email;
+  public String getUsername() {
+    return username;
   }
 
-  public void setEmail(String email) {
-    this.email = email;
+  public void setUsername(String username) {
+    this.username = username;
   }
 
   public String getPassword() {
@@ -85,6 +100,32 @@ public class User {
     this.phone = phone;
   }
   
+
+  public Set<Role> getRoles() {
+    return roles;
+  }
+
+  public void setRoles(Set<Role> roles) {
+    this.roles = roles;
+  }
+
+  public Collection<? extends GrantedAuthority> getAuthorities(){
+    return this.roles;
+  }
   
-  
+  public boolean isAccountNonExpired(){
+    return true;
+  }
+
+  public boolean isAccountNonLocked(){
+    return true;
+  }
+
+  public boolean isCredentialsNonExpired(){
+    return true;
+  }
+
+  public boolean isEnabled() {
+    return true;
+  } 
 }

@@ -1,4 +1,4 @@
-package pa.nft.marketplace.services;
+package pa.nft.marketplace.services.user;
 
 import java.util.List;
 import java.util.Optional;
@@ -7,11 +7,12 @@ import javax.persistence.EntityNotFoundException;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
-import pa.nft.marketplace.entities.User;
-import pa.nft.marketplace.repositories.UserRepository;
+import pa.nft.marketplace.entities.user.User;
+import pa.nft.marketplace.repositories.user.UserRepository;
 
 @Service
 public class UserService {
@@ -31,19 +32,20 @@ public class UserService {
   }
 
   public User save(User user){
-    User us = userRepository.save(user);
-    return us;
+    BCryptPasswordEncoder bcrypt = new BCryptPasswordEncoder();
+    user.setPassword(bcrypt.encode(user.getPassword()));
+    return userRepository.save(user);
   }
 
   public User update(Long id, User user){
     try {
       User us = userRepository.getOne(id);
       us.setName(user.getName());
-      us.setEmail(user.getEmail());
-      us.setPassword(user.getPassword());
+      us.setUsername(user.getUsername());
+      BCryptPasswordEncoder bcrypt = new BCryptPasswordEncoder();
+      us.setPassword(bcrypt.encode(user.getPassword()));
       us.setPhone(user.getPhone());
-      us = userRepository.save(us);
-      return us;
+      return userRepository.save(us);
     } catch (EntityNotFoundException e) {
       throw new ResponseStatusException(HttpStatus.NOT_FOUND, "User not found");
     }
