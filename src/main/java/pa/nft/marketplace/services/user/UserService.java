@@ -32,9 +32,14 @@ public class UserService {
   }
 
   public User save(User user){
-    BCryptPasswordEncoder bcrypt = new BCryptPasswordEncoder();
-    user.setPassword(bcrypt.encode(user.getPassword()));
-    return userRepository.save(user);
+      Optional<User> op = userRepository.findByUsername(user.getUsername());
+      if(op.isPresent()){
+        throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "User already exists");
+      }
+      User us = new User(user);
+      BCryptPasswordEncoder bcrypt = new BCryptPasswordEncoder();
+      us.setPassword(bcrypt.encode(us.getPassword()));
+      return userRepository.save(us);
   }
 
   public User update(Long id, User user){

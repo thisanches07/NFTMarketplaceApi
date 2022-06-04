@@ -46,6 +46,14 @@ public class User implements UserDetails {
 
   public User() {}
 
+  public User(User user) {
+    this.id = user.getId();
+    this.name = user.getName();
+    this.username = user.getUsername();
+    this.password = user.getPassword();
+    this.phone = user.getPhone();
+  }
+
   public User(
     Long id,
     String name,

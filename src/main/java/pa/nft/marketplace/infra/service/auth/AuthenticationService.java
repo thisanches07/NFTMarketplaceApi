@@ -1,4 +1,4 @@
-package pa.nft.marketplace.infra.auth;
+package pa.nft.marketplace.infra.service.auth;
 
 import java.util.Optional;
 
