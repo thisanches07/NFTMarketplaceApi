@@ -1,39 +1,57 @@
-package pa.nft.marketplace.dto;
+package pa.nft.marketplace.entities.nft;
 
 import java.time.LocalDateTime;
 
-import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.NotNull;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
-public class NftUpdateDto {
-    @NotEmpty(message = "A arte deve possuir um nome")
+@Entity
+@Table(name = "TB_NFT")
+public class Nft {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
     private String name;
-    @NotEmpty(message = "A arte deve possuir uma descrição")
     private String description;
-
-    @NotNull(message = "A arte deve possuir um preço")
     private float price;
-
-    @NotNull(message = "A arte deve possuir uma quantidade de estrelas")
     private Integer stars;
-
-    @NotEmpty(message = "A arte deve possuir um link de imagem")
     private String img;
-
-    @NotEmpty(message = "A arte deve possuir uma localidade")
     private String location;
-
-    @NotNull(message = "A arte deve possuir uma data de criação")
     private LocalDateTime created_at;
-
-    @NotNull(message = "A arte deve possuir uma data de atualização")
     private LocalDateTime updated_at;
-
-    @NotNull(message = "A arte deve possuir um tipo de id")
     private int type_id;
-
-    @NotNull(message = "É preciso informar se a arte é popular")
     private boolean is_popular;
+    private boolean is_recommended;
+
+    public Nft() {
+    }
+
+    public Nft(String name, String description, float price, Integer stars, String img, String location,
+            LocalDateTime created_at, LocalDateTime updated_at, int type_id, boolean is_popular,
+            boolean is_recommended) {
+        this.name = name;
+        this.description = description;
+        this.price = price;
+        this.stars = stars;
+        this.img = img;
+        this.location = location;
+        this.created_at = created_at;
+        this.updated_at = updated_at;
+        this.type_id = type_id;
+        this.is_popular = is_popular;
+        this.is_recommended = is_recommended;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
 
     public String getName() {
         return name;
@@ -95,8 +113,8 @@ public class NftUpdateDto {
         return updated_at;
     }
 
-    public void setUpdated_at(LocalDateTime updated_at) {
-        this.updated_at = updated_at;
+    public void setUpdated_at(LocalDateTime ipdated_at) {
+        this.updated_at = ipdated_at;
     }
 
     public int getType_id() {
@@ -107,12 +125,20 @@ public class NftUpdateDto {
         this.type_id = type_id;
     }
 
-    public boolean getIs_popular() {
+    public boolean isIs_popular() {
         return is_popular;
     }
 
     public void setIs_popular(boolean is_popular) {
         this.is_popular = is_popular;
+    }
+
+    public boolean isIs_recommended() {
+        return is_recommended;
+    }
+
+    public void setIs_recommended(boolean is_recommended) {
+        this.is_recommended = is_recommended;
     }
 
 }

@@ -1,9 +1,9 @@
-package pa.nft.marketplace.dto;
+package pa.nft.marketplace.dto.nft;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import pa.nft.marketplace.entities.Nft;
+import pa.nft.marketplace.entities.nft.Nft;
 
 public class NftListDto {
     private int total_size;

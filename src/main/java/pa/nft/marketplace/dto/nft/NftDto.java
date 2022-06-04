@@ -1,18 +1,10 @@
-package pa.nft.marketplace.entities;
+package pa.nft.marketplace.dto.nft;
 
 import java.time.LocalDateTime;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import pa.nft.marketplace.entities.nft.Nft;
 
-@Entity
-@Table(name = "TB_NFT")
-public class Nft {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+public class NftDto {
     private Long id;
     private String name;
     private String description;
@@ -23,26 +15,21 @@ public class Nft {
     private LocalDateTime created_at;
     private LocalDateTime updated_at;
     private int type_id;
-    private boolean is_popular;
-    private boolean is_recommended;
 
-    public Nft() {
+    public NftDto() {
     }
 
-    public Nft(String name, String description, float price, Integer stars, String img, String location,
-            LocalDateTime created_at, LocalDateTime updated_at, int type_id, boolean is_popular,
-            boolean is_recommended) {
-        this.name = name;
-        this.description = description;
-        this.price = price;
-        this.stars = stars;
-        this.img = img;
-        this.location = location;
-        this.created_at = created_at;
-        this.updated_at = updated_at;
-        this.type_id = type_id;
-        this.is_popular = is_popular;
-        this.is_recommended = is_recommended;
+    public NftDto(Nft nft) {
+        this.id = nft.getId();
+        this.name = nft.getName();
+        this.description = nft.getDescription();
+        this.price = nft.getPrice();
+        this.stars = nft.getStars();
+        this.img = nft.getImg();
+        this.location = nft.getLocation();
+        this.created_at = nft.getCreated_at();
+        this.updated_at = nft.getUpdated_at();
+        this.type_id = nft.getType_id();
     }
 
     public Long getId() {
@@ -113,8 +100,8 @@ public class Nft {
         return updated_at;
     }
 
-    public void setUpdated_at(LocalDateTime ipdated_at) {
-        this.updated_at = ipdated_at;
+    public void setUpdated_at(LocalDateTime updated_at) {
+        this.updated_at = updated_at;
     }
 
     public int getType_id() {
@@ -123,22 +110,6 @@ public class Nft {
 
     public void setType_id(int type_id) {
         this.type_id = type_id;
-    }
-
-    public boolean isIs_popular() {
-        return is_popular;
-    }
-
-    public void setIs_popular(boolean is_popular) {
-        this.is_popular = is_popular;
-    }
-
-    public boolean isIs_recommended() {
-        return is_recommended;
-    }
-
-    public void setIs_recommended(boolean is_recommended) {
-        this.is_recommended = is_recommended;
     }
 
 }

@@ -1,13 +1,13 @@
-package pa.nft.marketplace.controllers;
+package pa.nft.marketplace.controllers.nft;
 
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import pa.nft.marketplace.dto.NftDto;
-import pa.nft.marketplace.dto.NftListDto;
-import pa.nft.marketplace.dto.NftUpdateDto;
-import pa.nft.marketplace.entities.Nft;
-import pa.nft.marketplace.services.NftService;
+import pa.nft.marketplace.dto.nft.NftDto;
+import pa.nft.marketplace.dto.nft.NftListDto;
+import pa.nft.marketplace.dto.nft.NftUpdateDto;
+import pa.nft.marketplace.entities.nft.Nft;
+import pa.nft.marketplace.services.nft.NftService;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;

@@ -1,10 +1,10 @@
-package pa.nft.marketplace.repositories;
+package pa.nft.marketplace.repositories.nft;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
-import pa.nft.marketplace.entities.Nft;
+import pa.nft.marketplace.entities.nft.Nft;
 
 import java.util.List;
 
