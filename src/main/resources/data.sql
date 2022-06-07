@@ -11,3 +11,6 @@ INSERT INTO TB_USER(name,username,password,phone) VALUES ('Bruno Cesar', 'user@t
 
 -- ROLE
 INSERT INTO TB_ROLE(name) VALUES ('admin')
+
+-- USER ROLES
+INSERT INTO TB_USER_ROLES(user_id,roles_id) VALUES (1,1)

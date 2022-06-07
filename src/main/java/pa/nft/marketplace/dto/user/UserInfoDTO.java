@@ -2,24 +2,35 @@ package pa.nft.marketplace.dto.user;
 
 import pa.nft.marketplace.entities.user.User;
 
-public class UserDto {
+public class UserInfoDTO {
   
+  private Long id;
   private String name;
   private String username;
   private String phone;
 
-  public UserDto() {}
+  public UserInfoDTO() {}
 
-  public UserDto(String name, String username, String phone) {
+  public UserInfoDTO(Long id, String name, String username, String phone) {
+    this.id = id;
     this.name = name;
     this.username = username;
     this.phone = phone;
   }
 
-  public UserDto(User user){
+  public UserInfoDTO(User user){
+    this.id = user.getId();
     this.name = user.getName();
     this.username = user.getUsername();
     this.phone = user.getPhone();
+  }
+
+  public Long getId() {
+    return id;
+  }
+
+  public void setId(Long id) {
+    this.id = id;    
   }
 
   public String getName() {
