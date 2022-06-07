@@ -47,7 +47,7 @@ public class AuthController {
     return ResponseEntity.ok().body(tokenDTO);
   }
 
-   @PostMapping("/register")
+  @PostMapping("/register")
   public ResponseEntity<TokenDTO> register(@RequestBody @Valid User user){
     userService.save(user);
     UsernamePasswordAuthenticationToken usernamePasswordAuthenticationToken = new UsernamePasswordAuthenticationToken(user.getUsername(), user.getPassword());

@@ -18,7 +18,9 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.util.UriComponents;
 import org.springframework.web.util.UriComponentsBuilder;
 
+import pa.nft.marketplace.dto.user.UserInfoDTO;
 import pa.nft.marketplace.entities.user.User;
+import pa.nft.marketplace.infra.service.auth.TokenService;
 import pa.nft.marketplace.services.user.UserService;
 
 @RestController
@@ -28,6 +30,8 @@ public class UserController {
   @Autowired
   private UserService userService;
 
+  @Autowired
+  private TokenService tokenService;
 
   @GetMapping
   public ResponseEntity<List<User>> getUsers(){
@@ -39,6 +43,14 @@ public class UserController {
   public ResponseEntity<User> getUser(@PathVariable Long id) {
     User user = userService.getUser(id);
     return ResponseEntity.ok().body(user);
+  }
+
+  @GetMapping("/info")
+  public ResponseEntity<UserInfoDTO> getUserInfo(HttpServletRequest request) {
+    String token = request.getHeader("Authorization");
+    Long id = tokenService.getTokenId(token.substring(7, token.length()));
+    UserInfoDTO userInfoDTO = new UserInfoDTO(userService.getUser(id));
+    return ResponseEntity.ok().body(userInfoDTO);
   }
 
   @PostMapping

@@ -68,4 +68,9 @@ public class NftService {
         List<Nft> list = nftRepository.findByRecommendation();
         return new NftListDto(list.size(), 2, list);
     }
+
+    public Nft getNft(Long id) {
+        Optional<Nft> op = nftRepository.findById(id);
+        return op.orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Nft não está cadastrada!"));
+    }
 }
