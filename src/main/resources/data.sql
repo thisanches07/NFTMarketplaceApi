@@ -14,3 +14,10 @@ INSERT INTO TB_ROLE(name) VALUES ('admin')
 
 -- USER ROLES
 INSERT INTO TB_USER_ROLES(user_id,roles_id) VALUES (1,1)
+
+-- ORDER
+INSERT INTO TB_ORDER(user_id,date) VALUES (1,'2022-06-07 14:15:00')
+INSERT INTO TB_ORDER(user_id,date) VALUES (1,'2022-06-07 15:15:00')
+
+-- ITEM
+INSERT INTO TB_ITEM(amount,nft_id,quantity,order_id) VALUES (123.00,1,1,1)
