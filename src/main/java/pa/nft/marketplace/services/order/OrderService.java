@@ -30,8 +30,8 @@ public class OrderService {
   @Autowired
   private UserService userService;
 
-  public List<OrderDTO> getOrders(){
-    List<Order> orders = orderRepository.findAll();
+  public List<OrderDTO> getOrders(Long userId){
+    List<Order> orders = orderRepository.findAllWhereUserId(userId);
     List<OrderDTO> orderDTOs = new ArrayList<>();
     orders.forEach((e) -> orderDTOs.add(new OrderDTO(e)));
     return orderDTOs;

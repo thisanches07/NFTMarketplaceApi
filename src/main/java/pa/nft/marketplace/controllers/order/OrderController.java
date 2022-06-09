@@ -18,6 +18,7 @@ import pa.nft.marketplace.dto.order.OrderDTO;
 import pa.nft.marketplace.dto.order.OrderInsertDTO;
 import pa.nft.marketplace.dto.order.OrderUpdateDTO;
 import pa.nft.marketplace.entities.order.Order;
+import pa.nft.marketplace.infra.service.auth.TokenService;
 import pa.nft.marketplace.services.order.OrderService;
 
 import org.springframework.web.bind.annotation.PostMapping;
@@ -32,9 +33,14 @@ public class OrderController {
   @Autowired
   private OrderService orderService;
 
+  @Autowired
+  private TokenService tokenService;
+
   @GetMapping
-  public ResponseEntity<List<OrderDTO>> getOrders(){
-    return ResponseEntity.ok().body(orderService.getOrders());
+  public ResponseEntity<List<OrderDTO>> getOrders(HttpServletRequest request){
+    String token = getTokenFromHeader(request);
+    Long user_id = tokenService.getTokenId(token);
+    return ResponseEntity.ok().body(orderService.getOrders(user_id));
   }
 
   @GetMapping("/{id}")
@@ -46,6 +52,7 @@ public class OrderController {
   @PostMapping
   public ResponseEntity<Order> insert(@RequestBody OrderInsertDTO orderInsertDTO, HttpServletRequest request, UriComponentsBuilder builder) {
       Order order = orderService.save(orderInsertDTO);
+      System.out.println("test - " + order.toString());
       UriComponents uriComponents = builder.path(request.getRequestURI()+"/"+order.getId()).build();
       return ResponseEntity.created(uriComponents.toUri()).build();
   }
@@ -61,5 +68,12 @@ public class OrderController {
       orderService.delete(id);
       return ResponseEntity.noContent().build();
   }
-  
+
+  private String getTokenFromHeader(HttpServletRequest request){
+    String token = request.getHeader("Authorization");
+    if(token == null || token.isEmpty() || !token.startsWith("Bearer ")){
+      return null;
+    }
+    return token.substring(7, token.length());
+  }
 }
