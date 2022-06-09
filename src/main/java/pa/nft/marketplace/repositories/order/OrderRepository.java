@@ -11,6 +11,6 @@ import pa.nft.marketplace.entities.order.Order;
 @Repository
 public interface OrderRepository extends JpaRepository<Order, Long> {
   
-  @Query("SELECT o FROM Order o WHERE o.user_id = ?1")
+  @Query("SELECT o FROM Order o WHERE o.user.id = ?1")
   List<Order> findAllWhereUserId(Long user_id);
 }
