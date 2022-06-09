@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
 import pa.nft.marketplace.dto.order.ItemInsertDTO;
+import pa.nft.marketplace.dto.order.ItemUpdateDTO;
 import pa.nft.marketplace.entities.nft.Nft;
 import pa.nft.marketplace.entities.order.Item;
 import pa.nft.marketplace.repositories.order.ItemRepository;
@@ -42,12 +43,12 @@ public class ItemService {
     return itemRepository.save(item);
   }
 
-  public Item update(ItemInsertDTO itemInsertDTO, Long id){
+  public Item update(ItemUpdateDTO itemUpdateDTO, Long id){
     Item item = getItem(id);
     Nft nft = nftService.getNft(id);
     item.setNft(nft);
-    item.setAmount(itemInsertDTO.getAmount());
-    item.setQuantity(itemInsertDTO.getQuantity());
+    item.setAmount(itemUpdateDTO.getAmount());
+    item.setQuantity(itemUpdateDTO.getQuantity());
     item = itemRepository.save(item);
     return item;
   }

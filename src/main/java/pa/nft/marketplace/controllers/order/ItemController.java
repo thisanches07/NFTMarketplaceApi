@@ -18,6 +18,7 @@ import org.springframework.web.util.UriComponents;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import pa.nft.marketplace.dto.order.ItemInsertDTO;
+import pa.nft.marketplace.dto.order.ItemUpdateDTO;
 import pa.nft.marketplace.entities.order.Item;
 import pa.nft.marketplace.services.order.ItemService;
 
@@ -47,8 +48,8 @@ public class ItemController {
   }
 
   @PutMapping("/{id}")
-  public ResponseEntity<Item> update(@PathVariable Long id, @RequestBody ItemInsertDTO itemInsertDTO){
-    Item item = itemService.update(itemInsertDTO, id);
+  public ResponseEntity<Item> update(@PathVariable Long id, @RequestBody ItemUpdateDTO itemUpdateDTO){
+    Item item = itemService.update(itemUpdateDTO, id);
     return ResponseEntity.ok().body(item);
   }
 

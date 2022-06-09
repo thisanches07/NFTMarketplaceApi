@@ -1,22 +1,25 @@
 package pa.nft.marketplace.dto.order;
 
-import java.util.List;
+import java.time.LocalDateTime;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
 
 public class OrderUpdateDTO {
 
-  private List<ItemOrderUpdateDTO> items;
+  @JsonFormat(pattern = "dd/MM/yyyy HH:mm:ss")
+  private LocalDateTime date;
 
   public OrderUpdateDTO(){}
 
-  public OrderUpdateDTO(List<ItemOrderUpdateDTO> items) {
-    this.items = items;
+  public OrderUpdateDTO(LocalDateTime date) {
+    this.date = date;
   }
 
-  public List<ItemOrderUpdateDTO> getItems() {
-    return items;
+  public LocalDateTime getDate() {
+    return date;
   }
 
-  public void setItems(List<ItemOrderUpdateDTO> items) {
-    this.items = items;
-  }  
+  public void setDate(LocalDateTime date) {
+    this.date = date;
+  }
 }

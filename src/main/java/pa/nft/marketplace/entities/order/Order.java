@@ -33,7 +33,7 @@ public class Order implements Serializable {
 
   private LocalDateTime date;
 
-  @OneToMany(cascade = CascadeType.PERSIST)
+  @OneToMany(cascade = CascadeType.ALL)
   @JoinColumn(name = "ORDER_ID")
   private List<Item> items = new ArrayList<>();
 

@@ -45,18 +45,19 @@ public class OrderService {
   public Order save(OrderInsertDTO orderInsertDTO){
     Order order = new Order();
     User user = userService.getUser(orderInsertDTO.getUser_id());
+    List<Item> items = new ArrayList<>();
+    orderInsertDTO.getItems().forEach((e) -> items.add(itemService.save(e)));
     order.setUser(user);
     order.setDate(orderInsertDTO.getDate());
+    order.setItems(items);
     Order ord = orderRepository.save(order);
     return ord;
   }
 
   public Order update(OrderUpdateDTO orderUpdateDTO, Long id){
     Optional<Order> op = orderRepository.findById(id);
-    List<Item> items = new ArrayList<>();
-    orderUpdateDTO.getItems().forEach((e) -> items.add(itemService.getItem(e.getId())));
     Order ord = op.orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Order not found"));
-    ord.setItems(items);
+    ord.setDate(orderUpdateDTO.getDate());
     return orderRepository.save(ord);
   }
 
